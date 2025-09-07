@@ -1,0 +1,102 @@
+*{
+    margin: 0%;                 /* Remove default margin from all elements */
+    padding: 0%;                /* Remove default padding from all elements */
+    box-sizing: border-box;     /* Include border & padding in element's total width/height */
+    font-family: "poppins","san-serif"; /* Set global font */
+}
+:root{
+    --primary-color :#f6f7fb;   /* Light background color (default theme) */
+    --white-color : #fff;       /* White color variable */
+    --black-color : #18191a;    /* Dark gray/black variable */
+    --red-color : #e74c3c;      /* Bright red color (for hands, accents) */
+}
+body{
+    display: flex;              /* Flex layout for centering content */
+    min-height: 100vh;          /* Full viewport height */
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically */
+    background: var(--primary-color); /* Set background to primary color */
+}
+body.dark{
+    --primary-color :#242526;   /* Dark background color (for dark mode) */
+    --white-color : #18191a;    /* Invert white to dark */
+    --black-color : #fff;       /* Invert black to white */
+    --red-color : #e74c3c;      /* Keep red the same */
+}
+.container{
+    display: flex;              /* Flex layout */
+    flex-direction: column;     /* Stack children vertically */
+    align-items: center;        /* Center horizontally */
+    gap: 60px;                  /* Space between children */
+}
+.container .clock{
+    display: flex;              /* Flex container for clock */
+    height: 400px;              /* Fixed height */
+    width: 400px;               /* Fixed width */
+    border-radius: 50%;         /* Make it a circle */
+    align-items: center;        /* Center hands vertically */
+    justify-content: center;    /* Center hands horizontally */
+    background: var(--white-color); /* Background of clock face */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1),  /* Soft shadow */
+                0 25px 45px rgba(0, 0, 0, 0.1);  /* Deeper shadow */
+    position: relative;         /* Needed for absolute children (labels, hands) */
+}
+.clock label{
+    position: absolute;         /* Position labels around clock face */
+    inset: 20px;                /* Push inward from all edges */
+    text-align: center;         /* Center text horizontally */
+    transform: rotate(calc(var(--i) * 360deg / 12)); /* Rotate based on --i (1–12) */
+}
+.clock label span{
+    display: inline-block;      /* Make span inline-block for transform */
+    font-size: 30px;            /* Size of clock numbers */
+    font-weight: 600;           /* Semi-bold */
+    color: var(--black-color);  /* Clock number color */
+    transform: rotate(calc(var(--i) * -360deg / 12)); /* Counter-rotate so text is upright */
+}
+.container .indicator{
+    position: absolute;         /* Center indicator in the middle of clock */
+    height: 10px;               /* Small square base */
+    width: 10px;
+    background-color: red;      /* Base color (overridden by ::before) */
+    display: flex;              /* Flexbox for child (hand) */
+    justify-content: center;    /* Center hand horizontally */
+}
+.indicator::before{
+    content: "";                /* Empty pseudo-element for circle */
+    position: absolute;         /* Overlay center point */
+    height: 100%;               /* Match parent size */
+    width: 100%;
+    border-radius: 50%;         /* Make it circular */
+    background: var(--black-color); /* Fill color */
+    border: 4px solid var(--red-color); /* Red border around center */
+}
+.indicator .hand{
+    position: absolute;         /* Place hands from center */
+    height: 130px;              /* Default hand length */
+    width: 4px;                 /* Thin width */
+    bottom: 0;                  /* Start from bottom (pivot at bottom) */
+    border-radius: 25px;        /* Rounded edges */
+    transform-origin: bottom;   /* Rotate around bottom edge */
+    background: var(--red-color); /* Red by default (seconds hand) */
+} 
+.hand.minute {
+    height: 120px;              /* Shorter than seconds hand */
+    width: 5px;                 /* Slightly thicker */
+    background: var(--black-color); /* Black for minutes */
+}
+.hand.hour {
+    height: 100px;              /* Shortest hand */
+    width: 8px;                 /* Thickest hand */
+    background: var(--black-color); /* Black for hours */
+}
+.mode-switch{
+    padding: 10px 20px;         /* Inner spacing for button */
+    border-radius: 8px;         /* Rounded corners */
+    font-size: 22px;            /* Button text size */
+    font-weight: 400;           /* Normal weight */
+    display: inline-block;      /* Allow inline-block styling */
+    color: var(--white-color);  /* Text color */
+    background: var(--black-color); /* Button background */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Soft shadow under button */
+}
