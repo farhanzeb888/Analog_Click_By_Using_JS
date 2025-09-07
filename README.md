@@ -24,7 +24,8 @@ You can add an open-source license (e.g., MIT) if you wish to allow broader reus
 ---
 # Screenshots
 ![Web capture_7-9-2025_16426_](https://github.com/user-attachments/assets/07593835-b108-4ae5-a866-7d77013c8444)
-![Web capture_7-9-2025_16243_](https://github.com/user-attachments/assets/2178b763-262a-4429-89a6-4429690194d2)
+![Web capture_7-9-2025_16951_](https://github.com/user-attachments/assets/5b1b6d03-9c3e-495f-89da-941e2b78d98b)
+
 
 
 ---
